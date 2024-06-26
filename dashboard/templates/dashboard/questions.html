@@ -1,0 +1,81 @@
+{% extends "dashboard/dashboard.html" %}
+
+{% block admin %}
+<title>Add questions | {{ username }}</title>
+<link href="/static/css/questions/questions.css" rel="stylesheet">
+<script> document.getElementById("nav-question").classList.add("selected-nav") ; </script>
+
+<input type="hidden" id="usertype" value="{{ user_type }}">
+
+<div class="main-container">
+  <header class="page-header">
+    <span>Questions</span>
+    <a href="/view-questins">Show all</a>
+  </header>
+
+
+  <div class="sub_header">Choose category</div>
+  {% if  categories %}
+  <select id='category'>
+    {% for cat in  categories%}
+      <option value="{{ cat.id }}">{{ cat.category_name }}</opion>
+    {% endfor %}
+  </select>
+  {% else %}
+  <article class='nothing-found'>No category found</article>
+  {% endif %}
+
+  {% if  categories %}
+    <section class="add-category-container">
+        <article class="form-child-cont input-area">
+            <span>Question name</span>
+            <input type="text" id="question-name">
+        </article>
+
+        <article class="form-child-cont input-area">
+          <span>Description</span>
+          <textarea id="question-desc"></textarea>
+      </article>
+
+        <section class="option-conainer">
+            <article class="form-child-cont input-area">
+                <span>Option A</span>
+                <input type="text" id="option-a">
+            </article>
+            <article class="form-child-cont input-area">
+                <span>Option B</span>
+                <input type="text" id="option-b">
+            </article>
+        </section>
+
+        <section class="option-conainer">
+            <article class="form-child-cont input-area">
+                <span>Option C</span>
+                <input type="text" id="option-c">
+            </article>
+            <article class="form-child-cont input-area">
+                <span>Option D</span>
+                <input type="text" id="option-d">
+            </article>
+        </section>
+
+        <article style="margin:10px 0">
+          Choose correct answer : <select id="correct">
+            <option value='a'>Option A</opion>
+            <option value='b'>Option B</opion>
+            <option value='c'>Option C</opion>
+            <option value='d'>Option D</opion>
+          </select>
+        </article>
+
+        <article class="form-child-cont">
+        <button class="primary-button" onclick="saveQustion()">Save</button>
+        </article>
+    </section>
+  {% endif %}
+
+
+  
+</div>
+<script src="/static/js/questions.js"></script>
+{% endblock admin %}
